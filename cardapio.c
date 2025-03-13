@@ -3,24 +3,146 @@
 #include <string.h>
 #include <locale.h>
 #include <time.h>
+#include <windows.h>
 
 
+void printcardapio() {
+    int categoria = 0;
 
-enum pizzas
-{
-    calabresa,
-    portuguesa,
-    frango,
-    calafranco,
-    frango_ao_catupiry,
-    marguerita,
-    quatroqueijos,
-    palmito,
-    chocolate,
-    banana_com_brigadeiro,
-    morango_com_cocolate_branco,
-    brigadeiro,
-};
+    printf("Cardápio:\n");
+    printf("1 - Bebidas\n");
+    printf("2 - Principal\n");
+    printf("3 - Sobremesa\n");
+    printf("4 - Acompanhamento\n");
+    printf("5 - Entrada\n");
+    printf("Escolha a categoria: ");
+    scanf("%d", &categoria);
+
+    
+    int num_items = 0;
+    struct alimento *itens = NULL;
+
+    switch (categoria) {
+        case 1: 
+            num_items = 5;
+            itens = (struct alimento *)malloc(num_items * sizeof(struct alimento));
+            if (itens == NULL) {
+                printf("Erro de alocação de memória!\n");
+                return;
+            }
+            
+            snprintf(itens[0].nome, sizeof(itens[0].nome), "Refrigerante");
+            snprintf(itens[1].nome, sizeof(itens[1].nome), "Suco");
+            snprintf(itens[2].nome, sizeof(itens[2].nome), "Água");
+            snprintf(itens[3].nome, sizeof(itens[3].nome), "Chá");
+            snprintf(itens[4].nome, sizeof(itens[4].nome), "Café");
+
+            break;
+
+        case 2: 
+            num_items = 5;
+            itens = (struct alimento *)malloc(num_items * sizeof(struct alimento));  
+            if (itens == NULL) {
+                printf("Erro de alocação de memória!\n");
+                return;
+            }
+            // Definindo os itens
+            snprintf(itens[0].nome, sizeof(itens[0].nome), "Prato do dia");
+            snprintf(itens[1].nome, sizeof(itens[1].nome), "Prato vegetariano");
+            snprintf(itens[2].nome, sizeof(itens[2].nome), "Prato vegano");
+            snprintf(itens[3].nome, sizeof(itens[3].nome), "Prato sem glúten");
+            snprintf(itens[4].nome, sizeof(itens[4].nome), "Prato sem lactose");
+
+            break;
+
+        case 3: 
+            num_items = 5;
+            itens = (struct alimento *)malloc(num_items * sizeof(struct alimento));  
+            if (itens == NULL) {
+                printf("Erro de alocação de memória!\n");
+                return;
+            }
+
+            snprintf(itens[0].nome, sizeof(itens[0].nome), "Pudim");
+            snprintf(itens[1].nome, sizeof(itens[1].nome), "Sorvete");
+            snprintf(itens[2].nome, sizeof(itens[2].nome), "Bolo");
+            snprintf(itens[3].nome, sizeof(itens[3].nome), "Torta");
+            snprintf(itens[4].nome, sizeof(itens[4].nome), "Mousse");
+
+            break;
+
+        case 4:
+            num_items = 5;
+            itens = (struct alimento *)malloc(num_items * sizeof(struct alimento));
+            if (itens == NULL) {
+                printf("Erro de alocação de memória!\n");
+                return;
+            }
+            
+            snprintf(itens[0].nome, sizeof(itens[0].nome), "Arroz");
+            snprintf(itens[1].nome, sizeof(itens[1].nome), "Feijão");
+            snprintf(itens[2].nome, sizeof(itens[2].nome), "Batata frita");
+            snprintf(itens[3].nome, sizeof(itens[3].nome), "Salada");
+            snprintf(itens[4].nome, sizeof(itens[4].nome), "Farofa");
+
+            break;
+
+        case 5: 
+            num_items = 5;
+            itens = (struct alimento *)malloc(num_items * sizeof(struct alimento));  
+            if (itens == NULL) {
+                printf("Erro de alocação de memória!\n");
+                return;
+            }
+            
+            snprintf(itens[0].nome, sizeof(itens[0].nome), "Caldo");
+            snprintf(itens[1].nome, sizeof(itens[1].nome), "Canja");
+            snprintf(itens[2].nome, sizeof(itens[2].nome), "Salada");
+            snprintf(itens[3].nome, sizeof(itens[3].nome), "Sopa");
+            snprintf(itens[4].nome, sizeof(itens[4].nome), "Brusqueta");
+
+            break;
+
+        default:
+            printf("Categoria inválida!\n");
+            return;
+    }
+
+    printf("Itens da categoria escolhida:\n");
+    for (int i = 0; i < num_items; i++) {
+        printf("%d - %s\n", i + 1, itens[i].nome);
+    }
+
+    
+    free(itens);
+}
+
+void exibir_tela_de_carregamento(int tempo_total) {
+    int i;
+    int progresso = 0;
+    
+    printf("...\n");
+
+    for (i = 0; i <= tempo_total; i++) {
+
+        progresso = (i * 100) / tempo_total;
+        
+        printf("\r[");
+        for (int j = 0; j < 50; j++) {
+            if (j < (progresso / 2)) { 
+                printf("#");
+            } else {
+                printf(" ");
+            }
+        }
+        printf("] %d%%", progresso);
+        
+        Sleep(100); 
+    }
+
+    printf("\nCarregamento concluído!\n");
+}
+
 enum categorias
 {
     bebida,
@@ -94,20 +216,20 @@ int main()
     setlocale(LC_ALL, "Portuguese");
 
     int quantidade;
-
-    struct alimento comida;
-
+    struct alimento pedido;
+    int *ptr = &quantidade;
     int logico;
+    int *ptr2 = &logico;
 
     printf("Para acessar o cardapio, digite 1:\n");
     printf("para acessar o cardapio vegano, digite 2:\n");
     printf("para jogar jogo da adivinhação, digite 3:\n");
     printf("para sair, digite 0:\n");
 
-    scanf("%d", &logico);
+    scanf("%d", ptr2);
     if (logico == 1)
     {
-        /* code */
+        printcardapio();
     }
     else if (logico == 2)
     {
@@ -123,7 +245,6 @@ int main()
     }
     
 
-    cardapio(quantidade, comida);
 
     return (0);
 }
