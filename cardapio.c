@@ -15,7 +15,7 @@
      intituição: Universidade Federal do Rual do Semi-Árido - UFERSA.
      campus: Pau dos ferros.
 
-     revisado por: 
+     revisado por:
      -Chat gpt;
      aguardando novas revisões...
 
@@ -28,7 +28,7 @@
      O restaurante é novo, por isso dos poucos pedidos, concerteza não é graças a minha preguiça de fazer mais...
      Esté codigo foi feio para uma atividade avaliativa da disciplina de ALgoritmos e estruturas de dados I
      unidade 1.
-     
+
      */
 
 void jogo()
@@ -277,7 +277,6 @@ int main()
     setlocale(LC_ALL, "Portuguese");
 
     int qtdItensCardapio = 42;
-    int op;
 
     ItemCardapio *cardapio = (ItemCardapio *)malloc(qtdItensCardapio * sizeof(ItemCardapio));
 
@@ -556,6 +555,10 @@ int main()
                 }
                 else if (op == 2)
                 {
+                    for (int i = 0; i < qtdClientes; i++)
+                    {
+                        exibirPedido(pedidos[i]);
+                    }
                     int index;
                     printf("Digite o Ã­ndice do item que deseja remover: ");
                     scanf("%d", &index);
