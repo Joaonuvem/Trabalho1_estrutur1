@@ -567,13 +567,13 @@ int main()
     {
         printf("\nMenu:\n");
         printf("1. Adicionar novo cliente\n");
-        printf("2. Finalizar pedidos\n");
+        printf("2. Remove um item do pedido\n");
         printf("3. Atualizar status do pedido\n");
         printf("4. jogar um joguinho da adivinhação\n");
         printf("5. adionar item ao cardapio\n");
         printf("7. remover item do cardapio\n");
         printf("0. Sair\n");
-        printf("Escolha uma opï¿½ï¿½o: ");
+        printf("Escolha uma opção: ");
         scanf("%d", &opcao);
 
         if (opcao == 1)
@@ -586,7 +586,7 @@ int main()
             //um lopp infinito encadeado que so será quebrado quando o pedido for finalizado
             while (1)
             {
-                printf("\n1. Adicionar item\n2. Remover item\n3. Finalizar pedido\nEscolha uma opï¿½ï¿½o: ");
+                printf("\n1. Adicionar item\n2. Remover item\n3. Finalizar pedido\nEscolha uma opção: ");
                 scanf("%d", &op);
                 if (op == 1)
                 {
